@@ -15206,12 +15206,12 @@ const map = {
   }
 const specialWords = Object.keys(map);
 
-
-// Invoke the function
-document.addEventListener('change', function(event) {
-    findWordsInBody();
-})
-document.onload = findWordsInBody();
+// When receiving a message from the popup
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.action === "LookForWords") {
+        findWordsInBody();
+    }
+});
 
 function findWordsInBody() {
     // List of specific words to look for
