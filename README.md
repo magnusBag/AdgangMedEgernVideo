@@ -11,9 +11,9 @@ On the Extensions page, you'll notice a toggle switch in the top right corner la
 
 3. Load the Extension
 Once Developer Mode is enabled, you'll see some new options appear at the top: "Load unpacked", "Pack extension", and "Update".
-
 Click "Load unpacked".
 Navigate to the directory where your manifest.json file is located.
 Select the directory and click the "Open" button.
+
 4. Confirm Installation
 After loading the extension, Chrome might display a confirmation dialog. Click "Add Extension" to complete the installation.
