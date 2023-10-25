@@ -2,13 +2,18 @@
     "manifest_version": 3,
     "name": "Adgang med Egern",
     "version": "1.0",
-    "permissions": [
-      "activeTab"
-    ],
+    "permissions": ["activeTab", "tabs", "http://*/*", "https://*/*"],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self';"
+    },
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content.js"]
+        "js": ["content-egern.js"]
+        //"js":["content.js"]
       }
     ]
   }

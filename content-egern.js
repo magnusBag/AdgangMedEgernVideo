@@ -1,14 +1,14 @@
 
 const specialWords = ["Egern","egern"];
 
-
-// Invoke the function
-document.addEventListener('change', function(event) {
-    findWordsInBody();
-})
-document.onload = findWordsInBody();
-
+// When receiving a message from the popup
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.action === "LookForWords") {
+        findWordsInBody();
+    }
+});
 function findWordsInBody() {
+    console.log("123123123123");
     // List of specific words to look for
     let activeIframe = null;
     // Start traversal from the document body
