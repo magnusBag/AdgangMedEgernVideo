@@ -2,7 +2,7 @@
 
 *Effective Date: 27-10-2023*
 
-Thank you for using the "Adgang med Egern" Chrome Extension (the "Extension"). This Privacy Policy is intended to help you understand how we collect, use, and safeguard your information when you use our Extension. We take your privacy seriously and are committed to protecting your personal information.
+Thank you for using the "Adgang med Egern" Chrome Extension. This Privacy Policy is intended to help you understand how we collect, use, and safeguard your information when you use our Extension. We take your privacy seriously and are committed to protecting your personal information.
 
 ## Information We Do Not Collect
 
