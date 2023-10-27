@@ -17391,13 +17391,10 @@ let data = [
   "6815:netsvindeler",
   "6121:myndig",
 ];
+import { copy } from 'copy-paste';
 data = data.filter((item) => item.includes(":"));
 //filter out duplicates after :
-data = data.filter((item, index, self) => {
-    const [id] = item.split(":");
-    return self.findIndex((item) => item.startsWith(id)) === index;
-});
-import { copy } from 'copy-paste';
+
 
 
 let map = {};

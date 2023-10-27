@@ -8,7 +8,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }
 });
 function findWordsInBody() {
-    console.log("123123123123");
     // List of specific words to look for
     let activeIframe = null;
     // Start traversal from the document body
@@ -68,7 +67,6 @@ function traverseNodes(node) {
     }
     // Create an iframe
     const iframe = document.createElement('iframe');
-    iframe.src = `https://asset.dr.dk/imagescaler/?protocol=https&server=www.dr.dk&file=%2Fimages%2Farticle%2F2017%2F04%2F12%2Fgraa_egern.jpg&scaleAfter=crop&quality=70&w=165&h=125`;
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.style.position = 'fixed';

@@ -1,18 +1,18 @@
 {
     "manifest_version": 3,
-    "name": "Adgang med Egern",
+    "icons": {
+      "16": "static/egernIcon.png"
+    },
+    "name": "Adgang med Egern+",
     "version": "1.0",
-    "permissions": ["activeTab", "tabs", "http://*/*", "https://*/*"],
+    "permissions": ["activeTab", "tabs"],
     "action": {
       "default_popup": "popup.html"
-    },
-    "content_security_policy": {
-      "extension_pages": "script-src 'self'; object-src 'self';"
     },
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content-egern.js"]
+        "js": ["scripts/wordlist.js", "scripts/content.js"]
       }
     ]
   }
