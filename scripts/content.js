@@ -55,7 +55,7 @@ function findWordsInBody(wordsToFind) {
     //handle that word can also be a number and not a string
     const word = event.target.innerText;
     const id = wordList[word] ? wordList[word] : word;
-    iframe.src = `https://cdhsign.dk/video/${id}.webm`;
+    iframe.src = `https://adgang-med-egern.caspermb.dk/raw/${id}.mp4`;
     iframe.autoplay = true;
     iframe.loop = true;
     iframe.muted = true;
