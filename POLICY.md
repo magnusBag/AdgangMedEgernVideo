@@ -30,7 +30,7 @@ We may update this Privacy Policy from time to time to reflect changes in our pr
 
 ## Contact Us
 
-If you have any questions, concerns, or requests regarding your privacy or this Privacy Policy, please contact us at [Insert Contact Information].
+If you have any questions, concerns, or requests regarding your privacy or this Privacy Policy, please contact us at baggesenmagnus@gmail.com.
 
 By using the "Adgang med Egern" Chrome Extension, you agree to the terms and practices described in this Privacy Policy.
 
