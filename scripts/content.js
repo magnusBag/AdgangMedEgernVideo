@@ -13,18 +13,18 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action === "LookForWordsEgern") {
         console.log("LookForWordsEgern");
-        findWordsInBody(["Egern","egern"]);
+        findWordsInBody(["Egern","egern"], 'egern');
     }
 });
 
-function findWordsInBody(wordsToFind) {
+function findWordsInBody(wordsToFind, mode = 'normal') {
     // List of specific words to look for
     let activeIframe = null;
     if (wordsToFind) {
         specialWords = wordsToFind;
     }
     // Start traversal from the document body
-    traverseNodes(document.body, specialWords);
+    traverseNodes(document.body, specialWords, mode);
 
     // Attach event handlers to the span elements
     const specialWordElements = document.querySelectorAll('.special-word');
@@ -86,6 +86,59 @@ function findWordsInBody(wordsToFind) {
 }
 
 // Event handler function for special words
+
+
+function traverseNodes(node, specialWords, mode = 'normal') {
+    if (node.nodeType === Node.TEXT_NODE) {
+        let words = node.nodeValue.split(' ');
+        let newContent = [];
+        let replaced = false;
+        words.forEach(word => {
+            if (specialWords.includes(word)) {
+                replaced = true;
+                let span = document.createElement('span');
+                span.className = 'special-word';
+                span.style.backgroundColor = 'pink';
+                span.textContent = word;
+                span.addEventListener('mouseenter', mode === 'normal' ? handleSpecialWordHoverEgern : handleSpecialWordHover);
+                span.addEventListener('mouseout', function(event) {
+                    const rect = event.target.getBoundingClientRect();
+                    const isOutsideMinusBorder = event.clientX < rect.left + 5 || event.clientX > rect.right - 5 || event.clientY < rect.top + 5 || event.clientY > rect.bottom - 5;
+                    if (isOutsideMinusBorder) {
+                        const iframe = document.getElementById('tegnPlayer_#fff1234');
+                        if (iframe) {
+                            iframe.remove();
+                        }
+                    }
+                });
+                newContent.push(span.outerHTML);
+            } else {
+                newContent.push(word);
+            }
+        });
+        if (replaced) {
+            let newTextNode = document.createElement('div');
+            newTextNode.innerHTML = newContent.join(' ');
+            let parent = node.parentNode;
+            while (newTextNode.firstChild) {
+                parent.insertBefore(newTextNode.firstChild, node);
+            }
+            parent.removeChild(node);
+        }
+    } else {
+        Array.from(node.childNodes).forEach(childNode => traverseNodes(childNode, specialWords));
+    }
+}
+
+function reverseTraverseNodes(node) {
+    if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('special-word')) {
+        const textNode = document.createTextNode(node.textContent);
+        node.parentNode.replaceChild(textNode, node);
+    } else {
+        Array.from(node.childNodes).forEach(childNode => reverseTraverseNodes(childNode));
+    }
+}
+
 function handleSpecialWordHoverEgern(event) {
     if (document.getElementsByClassName("tegnPlayer").length !== 0) {
         return;
@@ -128,34 +181,5 @@ function moveIframe(event) {
         activeIframe.style.left = (mouseX - 80) + 'px'; // Half of iframe width to center
         activeIframe.style.top = (mouseY - 142) + 'px'; // Height of iframe plus some padding to place above
 
-    }
-}
-
-function traverseNodes(node, specialWords) {
-    if (node.nodeType === Node.TEXT_NODE) {
-        const regex = new RegExp(`\\b(${specialWords.join('|')})\\b`, 'g');
-        const replacedText = node.nodeValue.replace(regex, '<span class="special-word" style="background-color:pink;">$1</span>');
-        
-        if (replacedText !== node.nodeValue) {
-            const div = document.createElement('div');
-            div.innerHTML = replacedText;
-            
-            let parent = node.parentNode;
-            while (div.firstChild) {
-                parent.insertBefore(div.firstChild, node);
-            }
-            parent.removeChild(node);
-        }
-    } else {
-        Array.from(node.childNodes).forEach(childNode => traverseNodes(childNode, specialWords));
-    }
-}
-
-function reverseTraverseNodes(node) {
-    if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('special-word')) {
-        const textNode = document.createTextNode(node.textContent);
-        node.parentNode.replaceChild(textNode, node);
-    } else {
-        Array.from(node.childNodes).forEach(childNode => reverseTraverseNodes(childNode));
     }
 }

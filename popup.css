@@ -1,34 +1,6 @@
-/* Define the button styles */
-.cool-button {
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s, transform 0.2s;
-  }
-  
-  /* Add a hover effect */
-  .cool-button:hover {
-    background: linear-gradient(to bottom, #2980b9, #3498db);
-    transform: scale(1.05);
-  }
-  
-  /* Add an active effect */
-  .cool-button:active {
-    box-shadow: none;
-    transform: scale(0.95);
-  }
 
 .button-52 {
-    min-width: 100px;
+  min-width: 100px;
   font-size: 16px;
   font-weight: 200;
   letter-spacing: 1px;
@@ -65,25 +37,20 @@
     padding: 13px 50px 13px;
   }
 }
-  
+h1{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
 body{
-    min-width: 300px;
-    background-color: #f1f1f1;
+    min-width: 175px;
+    background-color: #e0e0e0;
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1rem 4rem;
-
+    border-radius: 15%;
 } 
-.btns{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 20px;
-    gap: 20px;
-}
 .Btn:disabled{
     background-color: #ccc;
     color: #666;
@@ -106,6 +73,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 5px;
   }
   
   .Btn::before {
